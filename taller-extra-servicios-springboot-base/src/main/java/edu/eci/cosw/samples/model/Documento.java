@@ -23,8 +23,13 @@ package edu.eci.cosw.samples.model;
 public class Documento {
  
     String titulo;
-    
     String contenido;
+
+    public Documento(String titulo, String contenido) {
+        this.titulo = titulo;
+        this.contenido = contenido;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     public String getTitulo() {
         return titulo;

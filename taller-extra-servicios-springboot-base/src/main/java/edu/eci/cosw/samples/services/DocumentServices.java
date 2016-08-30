@@ -21,11 +21,13 @@ import edu.eci.cosw.samples.model.Documento;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -37,7 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DocumentServices {
     
     ConcurrentHashMap<String, Documento> docs;
-@Autowired 
+
     public DocumentServices() {
         docs=new ConcurrentHashMap<>();
     }
@@ -46,8 +48,9 @@ public class DocumentServices {
      * Registrar un documento
      * @param d el documento
      */
+    
     @RequestMapping(method = RequestMethod.POST)
-    public void addDocument(Documento d){
+    public void addDocument(@RequestBody Documento d){
         docs.put(d.getTitulo(), d);
     }
     
@@ -58,12 +61,12 @@ public class DocumentServices {
      * @throws edu.eci.cosw.samples.services.DocumentNotFoundException 
      * curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/documentos -d '{"titulo":"el titulo", "contenido":"el contenido aaaa bbbb ccc"}'
      */
-    @RequestMapping(path = "/{nombredoc}", method = RequestMethod.GET)
-    public Documento getDocumento(String titulo) throws DocumentNotFoundException{
+    @RequestMapping(value = "/{nombredoc}", method = RequestMethod.GET)
+    public Documento getDocumento(@PathVariable("nombredoc") String titulo) throws DocumentNotFoundException{
+        docs.put("t", new Documento("titulo", "Contenido"));
         if (!docs.containsKey(titulo)){
             throw new DocumentNotFoundException("Documento ("+titulo+") no encontrado..." );
         }
         return docs.get(titulo);
     }
-    
 }
