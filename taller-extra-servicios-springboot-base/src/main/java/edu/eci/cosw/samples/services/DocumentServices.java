@@ -16,27 +16,37 @@
  */
 package edu.eci.cosw.samples.services;
 
+import edu.eci.cosw.samples.impl.AdvancedTextProcessor;
 import edu.eci.cosw.samples.model.Documento;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
  * @author hcadavid
  */
+@RestController
+@RequestMapping("/documentos")
 public class DocumentServices {
     
     ConcurrentHashMap<String, Documento> docs;
-
+@Autowired 
     public DocumentServices() {
         docs=new ConcurrentHashMap<>();
     }
-    
     
     /**
      * Registrar un documento
      * @param d el documento
      */
+    @RequestMapping(method = RequestMethod.POST)
     public void addDocument(Documento d){
         docs.put(d.getTitulo(), d);
     }
@@ -45,7 +55,10 @@ public class DocumentServices {
      * Buscar un documento a partir de su identificador
      * @param titulo
      * @return 
+     * @throws edu.eci.cosw.samples.services.DocumentNotFoundException 
+     * curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/documentos -d '{"titulo":"el titulo", "contenido":"el contenido aaaa bbbb ccc"}'
      */
+    @RequestMapping(path = "/{nombredoc}", method = RequestMethod.GET)
     public Documento getDocumento(String titulo) throws DocumentNotFoundException{
         if (!docs.containsKey(titulo)){
             throw new DocumentNotFoundException("Documento ("+titulo+") no encontrado..." );
