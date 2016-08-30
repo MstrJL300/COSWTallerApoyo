@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
  *
  * @author hcadavid
  */
-@Service
 public class BasicTextProcessor implements TextProcessor{
 
     @Override

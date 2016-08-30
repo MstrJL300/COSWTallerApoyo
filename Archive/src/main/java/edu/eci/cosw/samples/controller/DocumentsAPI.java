@@ -51,22 +51,25 @@ public class DocumentsAPI {
     @RequestMapping(value = "/{titulodoc}", method = RequestMethod.GET)
     public ResponseEntity<?> getDocumentById(@PathVariable("titulodoc") String val){
         try {
-            Documento doc=ds.getDocumento(val);
+            Documento doc = ds.getDocumento(val);
+            
             doc.setContenido(tp.processText(doc.getContenido()));
+            
             return new ResponseEntity<>(doc,HttpStatus.ACCEPTED);
+            
         } catch (DocumentNotFoundException ex) {
+            
             Logger.getLogger(DocumentsAPI.class.getName()).log(Level.SEVERE, null, ex);
+            
             return new ResponseEntity<>("No existe el documento:"+val,HttpStatus.NOT_FOUND);
         }        
     }
     
-
+// curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/documentos -d '{"titulo":"eltitulo", "contenido":"el contenido aaaa bbbb ccc"}'
+    
     @RequestMapping(method = RequestMethod.POST)
     public void postNewDocument(@RequestBody(required = true) Documento doc){
+        
         ds.addDocument(doc);
     }
-
-    
-    
-    
 }
