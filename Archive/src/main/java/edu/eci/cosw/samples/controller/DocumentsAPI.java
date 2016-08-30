@@ -65,7 +65,10 @@ public class DocumentsAPI {
         }        
     }
     
-// curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/documentos -d '{"titulo":"eltitulo", "contenido":"el contenido aaaa bbbb ccc"}'
+/**
+ * EJEMPLO CURL:
+ * curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/documentos -d '{"titulo":"eltitulo", "contenido":"el contenido aaaa bbbb ccc"}'
+ **/
     
     @RequestMapping(method = RequestMethod.POST)
     public void postNewDocument(@RequestBody(required = true) Documento doc){

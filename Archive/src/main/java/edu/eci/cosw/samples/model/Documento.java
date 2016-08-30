@@ -41,8 +41,4 @@ public class Documento {
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
-    
-    
-    
-    
 }
