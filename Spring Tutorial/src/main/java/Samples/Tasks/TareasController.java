@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Tasks;
+package Samples.Tasks;
 
-import Tasks.Interface;
-import Tasks.DocumentNotFoundException;
+import Samples.Tasks.Interface;
+import Samples.Tasks.DocumentNotFoundException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

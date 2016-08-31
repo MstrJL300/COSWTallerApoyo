@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hello;
+package Samples.hello;
 
 /**
  *
  * @author jose
  */
-import Tasks.Tareas;
+import Samples.Tasks.Tareas;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
