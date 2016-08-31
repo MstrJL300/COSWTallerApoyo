@@ -1,8 +1,11 @@
 edu/eci/cosw/samples/services/DocumentNotFoundException.class
 edu/eci/cosw/samples/DemoApplication.class
 edu/eci/cosw/samples/services/DocumentServices.class
+edu/eci/cosw/samples/services/TareasService.class
 edu/eci/cosw/samples/impl/AdvancedTextProcessor.class
 edu/eci/cosw/samples/model/Documento.class
 edu/eci/cosw/samples/controller/DocumentsAPI.class
+edu/eci/cosw/samples/model/Tareas.class
 edu/eci/cosw/samples/TextProcessor.class
 edu/eci/cosw/samples/impl/BasicTextProcessor.class
+edu/eci/cosw/samples/controller/TareasController.class
