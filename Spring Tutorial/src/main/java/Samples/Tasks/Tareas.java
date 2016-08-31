@@ -13,6 +13,10 @@ public class Tareas {
     private int id;
     private String nombre;
     
+    public Tareas() {
+        
+    }
+    
     public Tareas(int id, String nombre) {
         
         this.id = id;

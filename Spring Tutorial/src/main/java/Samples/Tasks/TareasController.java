@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 2087133
  */
 @RestController
-//@RequestMapping(value = "/tasks")
+@RequestMapping(value = "/tasks")
 public class TareasController {
     
     @Autowired
@@ -33,9 +33,9 @@ public class TareasController {
      * Returns the tasks registered on the system
      * @return 
      */
-    @RequestMapping(value = "/tasks", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List <Tareas> listAllTasks(){
-        taskService.addTask(new Tareas(10, "nombre"));
+        //taskService.addTask(new Tareas(10, "nombre"));
         List <Tareas> tasks = taskService.consultTasks();
         return tasks;
     }
@@ -46,10 +46,11 @@ public class TareasController {
      * EJEMPLO CURL:
      * curl -i -X POST -H "Content-Type:application/json" http://localhost:8080/tasks -d '{"id":10, "nombre":"nombre"}'
      */
-    /*@RequestMapping (method = RequestMethod.POST)
-    public ResponseEntity<Void> createTask (@RequestBody Tareas task){
+    @RequestMapping(method = RequestMethod.POST)
+    public void createTask (@RequestBody(required = true) Tareas task){
+        
         taskService.addTask(task);
-        return  new ResponseEntity<>(HttpStatus.CREATED);
-    }*/
+//        return  new ResponseEntity<>(HttpStatus.CREATED);
+    }
     
 }
